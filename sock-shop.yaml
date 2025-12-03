@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
-  namespace: argocd-ns          # <-- Argo CD namespace in AKS
+  name: sock-shop
+  namespace: argocd-ns
 spec:
   project: default
   source:
     repoURL: https://github.com/Arch3r911/argocd-example-apps.git
     targetRevision: main
-    path: sock-shop         # <-- folder with child Application YAMLs
+    path: sock-shop
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd-ns
+    namespace: sock-shop
   syncPolicy:
     automated:
-      prune: true            # delete stuff removed from Git
-      selfHeal: true         # fix drift
+      prune: true
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true

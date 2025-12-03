@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Arch3r911/argocd-example-apps.git
-    targetRevision: master
-    path: apps               # <-- folder with child Application YAMLs
+    targetRevision: main
+    path: sock-shop               # <-- folder with child Application YAMLs
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd-ns

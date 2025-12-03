@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: argocd-ns          # <-- Argo CD namespace in AKS
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Arch3r911/argocd-example-apps.git
+    targetRevision: master
+    path: apps               # <-- folder with child Application YAMLs
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd-ns
+  syncPolicy:
+    automated:
+      prune: true            # delete stuff removed from Git
+      selfHeal: true         # fix drift
+    syncOptions:
+    - CreateNamespace=true
